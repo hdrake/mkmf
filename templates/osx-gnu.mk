@@ -87,6 +87,8 @@ CPPDEFS += -Duse_netCDF
 # Macro for Fortran preprocessor
 FPPFLAGS := $(INCLUDES)
 
+FCFLAGS := -fallow-argument-mismatch -fallow-invalid-boz
+
 # Add -D__APPLE__ for Fortran if on OSX (i.e. Darwin)
 ifeq ($(shell uname -s),Darwin)
 FPPFLAGS += -D__APPLE__
@@ -96,7 +98,7 @@ endif
 FPPFLAGS += $(shell nf-config --fflags)
 
 # Base set of Fortran compiler flags
-FFLAGS := -fcray-pointer -fdefault-double-8 -fdefault-real-8 -Waliasing -ffree-line-length-none -fno-range-check
+FFLAGS := -fcray-pointer -fdefault-double-8 -fdefault-real-8 -Waliasing -ffree-line-length-none -fno-range-check -fallow-argument-mismatch -fallow-invalid-boz
 
 # Flags based on perforance target (production (OPT), reproduction (REPRO), or debug (DEBUG)
 FFLAGS_OPT = -O3
